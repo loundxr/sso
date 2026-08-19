@@ -1,0 +1,30 @@
+version: "3"
+
+vars:
+  STORAGE_PATH: "./storage/sso.db"
+  MIGRATIONS_PATH: "./migrations"
+
+tasks:
+  run:
+    desc: "Run SSO app with --config flag"
+    cmds:
+     - go run ./cmd/sso/main.go --config=./config/local.yaml
+
+  migrate-up:
+    desc: "Apply DB migrations up"
+    cmds:
+     - >
+      go run ./cmd/migrator
+      --storage-path={{.STORAGE_PATH}}
+      --migrations-path={{.MIGRATIONS_PATH}}
+      {{.CLI_ARGS}}
+
+  migrate-test-up:
+    desc: "Apply DB migrations for tests"
+    cmds:
+     - >
+      go run ./cmd/migrator 
+      --storage-path={{.STORAGE_PATH}} 
+      --migrations-path=./tests/migrations 
+      --migrations-table=migrations_test
+      {{.CLI_ARGS}}
