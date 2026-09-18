@@ -62,7 +62,7 @@ A lightweight, robust **Single Sign-On (SSO)** authentication microservice built
 ## Getting Started
 
 ### Prerequisites
-- [Go 1.21+](https://go.dev/)
+- [Go 1.26+](https://go.dev/)
 - [Task](https://taskfile.dev/) (optional, but recommended)
 
 ### Installation & Run
